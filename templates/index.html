@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grammara</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='output.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+</head>
+<body>
+    <div class="contents">
+        <div class="jumbotron bg-[url('assets/randomwords.png')]">
+            <div class="header flex items-center gap-4 mx-4 my-2">
+                <img src="static/assets/logo.png">
+                <p class="text-grammara1 font-poppins font-semibold">grammara</p>
+            </div>
+            <div class="title flex items-center flex-col m-12">
+                <h1 class="text-grammara1 text-5xl font-arial font-black">One Click to Error-Free Writing</h1>
+                <p class="text-grammara2 font-arial text-2xl w-1/2 text-center pt-4">Elevate your writing to new levels of excellence, leaving no room for errors or ambiguity. Experience the confidence that comes with impeccable writing, tailored for impact and effectiveness.</p>
+            </div>
+            <form id="grammar-check-form" method="POST" action="" enctype="multipart/form-data" class="auto-correct-container w-4/5 flex flex-col m-auto gap-6">
+                <div class="auto-correct-boxes flex gap-8">
+                    <div class="auto-correct-input bg-[#E3F0FF] p-8 pb-4 flex flex-col rounded-xl w-2/3">
+                        <div class="correct-header flex justify-between">
+                            <ul class="correct-title flex gap-8">
+                                <li class="flex items-center gap-4 pb-1 active" id="check_text_btn">
+                                    <img src="static/assets/text.png" class="w-6">
+                                    <p class="text-grammara1 text-base font-medium">Check Text</p>
+                                </li>
+                                <li class="flex items-center gap-4 pb-1" id="check_document_btn">
+                                    <img src="static/assets/doc.png" class="w-6">
+                                    <p class="text-grammara1 text-base font-medium">Check Document</p>
+                                </li>
+                            </ul>
+                            <div class="text-format">
+                                <ul class="copy-btn text-format flex gap-8">
+                                    <li class="flex items-center gap-4 cursor-pointer">
+                                        <img src="static/assets/copy.png" class="w-6">
+                                        <p class="text-base font-medium">Copy</p>
+                                    </li>
+                                    <li class="delete-btn flex items-center gap-4 cursor-pointer">
+                                        <img src="static/assets/delete.png" class="w-6">
+                                        <p class="text-base font-medium">Delete</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="main-content flex flex-col h-full w-full">
+                            <textarea id="user-input-hidden" name="user-input" style="resize:none" maxlength="20000" placeholder="Input text" rows="22" cols="119" class="my-4 p-4 rounded-lg" hidden></textarea>
+                            <div id="user-input" class="my-4 p-4 rounded-lg border-b-[1px] border-b-[#ccc] min-h-[558px] max-h-[558px] bg-[#FFFFFF] overflow-y-scroll" style="resize:none;" contenteditable="true" required></div>
+                            <p class="maximal-characters text-right text-grammara1 text-xl font-medium">0/20000 Characters</p>
+                        </div>
+                    </div>
+                    <div class="suggestions-container bg-[#E3F0FF] p-8 flex flex-col rounded-xl w-1/3">
+                        <p class="suggestions-title text-grammara1 text-2xl font-medium">Suggestion</p>
+                        <div class="suggestions-box bg-white flex flex-col p-4 rounded-lg my-4 h-full gap-4 overflow-y-scroll max-h-[558px]">
+                            <p class="text-grammara1 text-lg font-medium">Suggestion for your text will appear here</p>
+                            <img src="static/assets/suggestions.png" class="w-9/12 m-auto mr-0">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" name="auto-correct" class="text-white bg-grammara1 px-5 py-3 rounded-lg w-2/12">Auto Correct</button>
+            </form>
+        </div>
+        <div class="features-container">
+            <div class="features w-3/4 flex flex-col mx-auto py-32 pt-40 gap-12">
+                <p class="font-poppins font-medium text-4xl text-center">Why Choose Grammara?</p>
+                <div class="feature bg-[#87CFCF] px-24 py-4 w-full flex items-center gap-32 rounded-xl">
+                    <img src="static/assets/feature1.png" class="w-1/4">
+                    <div class="feature-desc flex flex-col gap-4">
+                        <p class="text-white font-poppins font-semibold text-4xl">Fast, Free, and Easy to Use</p>
+                        <p class="text-white font-poppins font-medium text-xl w-3/4">With one click, grammara will scan your writing and alert you to any errors in grammar, spelling, punctuation, word misuse, and more so that you can easily see what’s amiss and fix it fast.</p>
+                    </div>
+                </div>
+                <div class="feature bg-[#87CFCF] px-24 py-4 w-full flex flex-row-reverse items-center gap-32 rounded-xl">
+                    <img src="static/assets/feature2.png" class="w-1/2">
+                    <div class="feature-desc flex flex-col items-end gap-4">
+                        <p class="text-white font-poppins font-semibold text-4xl text-right">Smart Writing Suggestions</p>
+                        <p class="text-white font-poppins font-medium text-xl text-right">Elevate your content effortlessly, with intelligent word choices and engaging sentence variations. Experience the power of creativity at your fingertips.</p>
+                    </div>
+                </div>
+                <div class="feature bg-[#87CFCF] px-24 py-4 w-full flex items-center gap-32 rounded-xl">
+                    <img src="static/assets/feature3.png" class="w-1/4">
+                    <div class="feature-desc flex flex-col gap-4">
+                        <p class="text-white font-poppins font-semibold text-4xl">Enhance Your Writing</p>
+                        <p class="text-white font-poppins font-medium text-xl w-3/4">grammara fixes complex spelling errors based on the context of your sentence such as confused words/homophones. grammara also helps your writing be as stylish as you are by detecting overused phrases, foreign terms, redundant words, and improper word choice.</p>
+                    </div>
+                </div>
+                <div class="feature bg-[#87CFCF] px-24 py-4 w-full flex flex-row-reverse items-center gap-8 rounded-xl">
+                    <img src="static/assets/feature4.png" class="w-1/2">
+                    <div class="feature-desc flex flex-col items-end gap-4 end">
+                        <p class="text-white font-poppins font-semibold text-4xl text-right">Document Proofreading</p>
+                        <p class="text-white font-poppins font-medium text-xl text-right">In grammara you can also check your document and it will show some suggestions. Moreover grammara can auto correct your document with one click. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="faq-container w-3/4 flex flex-col m-auto gap-8 px-6 py-12">
+            <p class="font-poppins font-medium text-4xl text-center">Frequently Asked Questions(FAQ)</p>
+            <div class="faq-item flex flex-col bg-[#F1F3F9] rounded-xl p-8">
+                <div class="faq-title flex justify-between">
+                    <p class="font-poppins font-medium text-2xl">How well does grammara do the grammar and spell check?</p>
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="35"
+                    height="35"
+                    viewBox="0 0 26 26"
+                    fill="none"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    >
+                        <path d="M5 12l7 7 7-7"></path>
+                    </svg>
+                </div>
+                <div class="faq-description">
+                    <p class="font-poppins font-medium text-xl">grammara corrects spelling mistakes, but it also offers a full writing analysis of all possible texts. In addition to spelling, grammar, and word choice, language style is also corrected. Punctuation errors of all kinds are also found and corrected by grammara. Its correction distinguishes between optional and required commas. Even complex sentence structures can be proofread by the comma check.</p>
+                </div>
+            </div>
+            <div class="faq-item flex flex-col bg-[#F1F3F9] rounded-xl p-8 hover:">
+                <div class="faq-title flex justify-between">
+                    <p class="font-poppins font-medium text-2xl">Where can I use grammara</p>
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="35"
+                    height="35"
+                    viewBox="0 0 26 26"
+                    fill="none"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    >
+                        <path d="M5 12l7 7 7-7"></path>
+                    </svg>
+                </div>
+                <div class="faq-description">
+                    <p class="font-poppins font-medium text-xl">grammara can be used by all types of device like computer, laptop, and mobile through all common internet browsers such as Chrome, Mozilla Firefox, Microsoft Edge, Opera, Brave, and others.</p>
+                </div>
+            </div>
+            <div class="faq-item flex flex-col bg-[#F1F3F9] rounded-xl p-8 hover:">
+                <div class="faq-title flex justify-between">
+                    <p class="font-poppins font-medium text-2xl">Is grammara really free?</p>
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="35"
+                    height="35"
+                    viewBox="0 0 26 26"
+                    fill="none"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    >
+                        <path d="M5 12l7 7 7-7"></path>
+                    </svg>
+                </div>
+                <div class="faq-description">
+                    <p class="font-poppins font-medium text-xl">Yes, grammara is free to use to correct spelling and grammar in your writing without sign up needed but there are some certain limitations in checking the writing for now such as 20000 characters and about 40kb of document at one time check. </p>
+                </div>
+            </div>
+            <div class="faq-item flex flex-col bg-[#F1F3F9] rounded-xl p-8 hover:">
+                <div class="faq-title flex justify-between">
+                    <p class="font-poppins font-medium text-2xl">What are the supported languages by the grammara?</p>
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="35"
+                    height="35"
+                    viewBox="0 0 26 26"
+                    fill="none"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    >
+                        <path d="M5 12l7 7 7-7"></path>
+                    </svg>
+                </div>
+                <div class="faq-description">
+                    <p class="font-poppins font-medium text-xl">grammara uses LanguageTool as API so it masters more than 30 languages and dialects. Its main languages are English, Spanish, German, French, Dutch, and Portuguese. In its English version, you can choose between six standard varieties (US, UK, Canada, Australia, New Zealand, and South Africa).</p>
+                </div>
+            </div>
+            <div class="faq-item flex flex-col bg-[#F1F3F9] rounded-xl p-8 hover:">
+                <div class="faq-title flex justify-between">
+                    <p class="font-poppins font-medium text-2xl">How is grammara different from other writing tools?</p>
+                    <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="35"
+                    height="35"
+                    viewBox="0 0 26 26"
+                    fill="none"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    >
+                        <path d="M5 12l7 7 7-7"></path>
+                    </svg>
+                </div>
+                <div class="faq-description">
+                    <p class="font-poppins font-medium text-xl">grammara differs from other writing tool with its powerful feature for auto correcting the writing. With one click, grammara will auto correct your writing and alert you to any errors in grammar, spelling, punctuation, word misuse, and more so. You can also customize even further with the suggestions that has been provided.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-container bg-[#000000] py-4 mt-32">
+        <div class="footer flex flex-col items-center w-1/4 m-auto gap-4">
+            <div class="header flex items-center gap-4">
+                <img src="static/assets/logo.png" class="w-5/12">
+                <p class="text-grammara1 font-poppins font-semibold">grammara</p>
+            </div>
+            <div class="social-media flex justify-center gap-8">
+                <img src="static/assets/facebook.png" class="w-1/12">
+                <img src="static/assets/instagram.png" class="w-1/12">
+                <img src="static/assets/linkedin.png" class="w-1/12">
+                <img src="static/assets/twitter.png" class="w-1/12">
+            </div>
+            <p class="text-white font-arial font-black text-[8px]">© 2023 grammara</p>
+        </div>
+    </div>
+    <div id="responseDiv"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

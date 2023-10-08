@@ -1,0 +1,113 @@
+.faq-description {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in;
+}
+
+.faq-item.active .faq-description {
+    max-height: 250px;
+}
+
+.faq-item.active svg {
+    transform: rotate(180deg);
+}
+
+.suggestions-items {
+    max-height: 0;
+    margin-top: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in;
+}
+
+.suggestions-items.active {
+    max-height: 250px;
+    margin-top: 0.5rem;
+    transition: max-height 0.5s ease-in;
+}
+
+svg {
+    transition: transform 0.5s ease-in
+}
+
+.jumbotron {
+    background-position: 0rem -35rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.features-container {
+    background-image: url("assets/bubbles2.png");
+    background-position: -22rem 0rem;
+    background-size: cover;
+}
+
+#document-input {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+#lbl-document {
+    cursor: pointer;
+}
+
+.correct-title li.active { 
+    border-bottom-width: 2px;
+    --tw-border-opacity: 1;
+    border-color: rgb(39 41 213 / var(--tw-border-opacity));
+}
+
+.suggestions-list {
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.25) 
+}
+
+.suggestions-list.active {
+    cursor: default; 
+}
+
+.suggestions-list.removed {
+    display: none;
+}
+
+.suggestions-button {
+    display: none;
+}
+
+.suggestions-button.active {
+    display: flex;
+    gap: 1rem;
+}
+
+.suggestions-list-header {
+    cursor: deafult;
+}
+
+.suggestions-list-header.active {
+    cursor: pointer;
+}
+
+
+.suggestions-box {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+.suggestions-box::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+#check_document_btn {
+    cursor: pointer;
+}
+
+#check_text_btn {
+    cursor: pointer;
+}
+
+#user-input:empty:before {
+    content: 'Type here...';
+    color: #aaa;
+}
+
+.auto-correct-boxes {
+    max-height: 700px;
+}
