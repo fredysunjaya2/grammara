@@ -4,5 +4,8 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.3.3"
+  },
+  "dependencies": {
+    "@vercel/blob": "^0.13.0"
   }
 }

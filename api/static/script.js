@@ -125,12 +125,27 @@ $(document).ready(function() {
                     url: "/correctiondoc",
                     type: "POST",
                     data: formData2,
+                    xhrFields: {
+                        responseType: 'blob' // Important: responseType as 'blob' to handle binary data
+                    },
                     processData: false, // Prevent jQuery from processing the data
                     contentType: false, // Prevent jQuery from setting the content type
                     success: function(response) {
                         // Handle the response from the server
                         // alert("success");
-                        window.location.href = "/download/" + response
+                        // window.location.href = "/download/" + response
+
+                        const blob = new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+
+                        // Create a link and trigger a click to start download
+                        const a = document.createElement('a');
+                        a.href = window.URL.createObjectURL(blob);
+                        a.download = file.name; // Change the filename as needed
+                        a.click();
+
+                        // Clean up after download
+                        window.URL.revokeObjectURL(a.href);
+
                     },
                     error: function(error) {
                         console.error("Error:", error);
@@ -195,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function() {
             <label for="document-input" id="lbl-document" class="h-full flex items-center justify-center flex-col bg-white p-4 my-4 rounded-lg min-h-[558px]">
                 <img src="static/assets/upload.png" class="h-1/6 pb-3 object-contain">
                 <p class="text-2xl font-medium text-[#0F0F0F] font-poppins">Drag & drop files or Browse</p>
-                <p class="text-sm text-[#676767] font-poppins">Supported formates: Word & Txt</p>
+                <p class="text-sm text-[#676767] font-poppins">Supported formates: Word(.docx)</p>
             </label>
             <input oninput="filesize(this)" type="file" accept=".doc,.docx" name="document" id="document-input">
         `;

@@ -1,7 +1,8 @@
-from flask import Flask, render_template, request, send_from_directory, redirect, url_for, abort, after_this_request, jsonify
+from flask import Flask, render_template, request, send_from_directory, redirect, url_for, abort, after_this_request, jsonify, send_file
 from docx import Document
 from docx.shared import RGBColor
 from docx.enum.text import WD_COLOR_INDEX
+from io import BytesIO
 import threading
 
 import requests
@@ -21,7 +22,7 @@ app.config["TEMPFILENAME"] = ""
 app.config["DOC"] = True
 app.config["isDoc"] = False
 
-suggestions = None
+suggestions = None    
 
 def substr_replace(string, replacement, start, length):
     return string[:start] + replacement + string[start + length:]
@@ -141,29 +142,29 @@ def readDoc(files):
                     # print("totalLength:", totalLength)
 
                 # paragraphText = paragraph.text
+    
+    return doc
 
-    doc.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
+# @app.route("/download/<docname>")
+# def getFile(docname):
+#     path = app.config['UPLOAD_FOLDER']
+#     # print("inside getFile")
+#     try:
+#         # the as_attachment=True parameter. This will force the client to download the file instead of displaying it in the browser.
+#         def delete_file():
+#             time.sleep(1)  # Delay the deletion to ensure the file is closed
+#             os.remove(path + "/" + docname)
 
-@app.route("/download/<docname>")
-def getFile(docname):
-    path = app.config['UPLOAD_FOLDER']
-    # print("inside getFile")
-    try:
-        # the as_attachment=True parameter. This will force the client to download the file instead of displaying it in the browser.
-        def delete_file():
-            time.sleep(1)  # Delay the deletion to ensure the file is closed
-            os.remove(path + "/" + docname)
+#         # Start the deletion thread
+#         deletion_thread = threading.Thread(target=delete_file)
+#         deletion_thread.start()
 
-        # Start the deletion thread
-        deletion_thread = threading.Thread(target=delete_file)
-        deletion_thread.start()
+#         # print("before send from directory")
 
-        # print("before send from directory")
-
-        return send_from_directory(path, docname, as_attachment=False)
-    except FileNotFoundError:
-        abort(404)
+#         return send_from_directory(path, docname, as_attachment=False)
+#     except FileNotFoundError:
+#         abort(404)
 
 @app.route("/correction", methods=['POST'])
 def correctionProcess():
@@ -196,10 +197,14 @@ def correctionProcessDoc():
     if not allowed_doc(filename):
         return redirect(request.url)
 
-    readDoc(files)
-    
-    return filename
+    doc = readDoc(files)
 
+    doc.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    processed_content = BytesIO()
+    doc.save(processed_content)
+    processed_content.seek(0)
+
+    return send_file(processed_content, mimetype='application/vnd.openxmlformats-officedocument.wordprocessingml.document', as_attachment=True, download_name='report.docx')
 
 @app.route("/", methods=['POST', 'GET'])
 def hello_world():
