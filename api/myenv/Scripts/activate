@@ -1,5 +1,5 @@
 # This file must be used with "source bin/activate" *from bash*
-# you cannot run it directly okay
+# you cannot run it directly
 
 
 if [ "${BASH_SOURCE-}" = "$0" ]; then
@@ -45,7 +45,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV='D:\Latihan Python(CAWU II)\grammara\myenv'
+VIRTUAL_ENV='D:\Latihan Python(CAWU II)\grammara\api\myenv'
 if ([ "$OSTYPE" = "cygwin" ] || [ "$OSTYPE" = "msys" ]) && $(command -v cygpath &> /dev/null) ; then
     VIRTUAL_ENV=$(cygpath -u "$VIRTUAL_ENV")
 fi

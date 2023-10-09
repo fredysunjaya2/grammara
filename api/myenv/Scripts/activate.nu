@@ -32,7 +32,7 @@ export-env {
       }
     }
 
-    let virtual_env = 'D:\Latihan Python(CAWU II)\grammara\myenv'
+    let virtual_env = 'D:\Latihan Python(CAWU II)\grammara\api\myenv'
     let bin = 'Scripts'
 
     let is_windows = ($nu.os-info.family) == 'windows'
