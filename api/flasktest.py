@@ -183,23 +183,22 @@ def correctionProcessDoc():
     # print(request.files["document"])
     # print(request.form["user-input"])
     print("success")
+
+    if not allowed_size(request.cookies.get("filesize")):
+        return redirect(request.url)
     
-    if app.config["DOC"]:
-        if not allowed_size(request.cookies.get("filesize")):
-            return redirect(request.url)
-        
-        files = request.files["file"]
-        filename = files.filename
+    files = request.files["file"]
+    filename = files.filename
 
-        if filename == "":
-            return redirect(request.url)
+    if filename == "":
+        return redirect(request.url)
 
-        if not allowed_doc(filename):
-            return redirect(request.url)
+    if not allowed_doc(filename):
+        return redirect(request.url)
 
-        readDoc(files)
-        
-        return filename
+    readDoc(files)
+    
+    return filename
 
 
 @app.route("/", methods=['POST', 'GET'])
