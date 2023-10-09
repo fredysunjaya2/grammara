@@ -33,6 +33,7 @@ svg {
     background-position: 0rem -35rem;
     background-size: cover;
     background-repeat: no-repeat;
+    background-image: url("assets/randomwords.png");
 }
 
 .features-container {
