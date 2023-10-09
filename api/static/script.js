@@ -111,8 +111,10 @@ $(document).ready(function() {
 
         if (isDoc) {
             // Get the selected file from the input element
+            console.log("hereisdoc")
 
             if (file) {
+                console.log("here file")
                 // Create a new FormData object and append the file to it
                 const formData2 = new FormData();
                 formData2.append("file", file);
@@ -127,7 +129,7 @@ $(document).ready(function() {
                     success: function(response) {
                         // Handle the response from the server
                         // alert("success");
-                        window.location.href = "http://localhost:5000/download/" + response
+                        window.location.href = "/download/" + response
                     },
                     error: function(error) {
                         console.error("Error:", error);
