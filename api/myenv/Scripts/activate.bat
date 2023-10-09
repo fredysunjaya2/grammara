@@ -1,4 +1,4 @@
-@set "VIRTUAL_ENV=D:\Latihan Python(CAWU II)\grammara\myenv"
+@set "VIRTUAL_ENV=D:\Latihan Python(CAWU II)\grammara\api\myenv"
 
 @set "VIRTUAL_ENV_PROMPT="
 @if NOT DEFINED VIRTUAL_ENV_PROMPT (
