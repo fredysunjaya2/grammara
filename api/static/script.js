@@ -119,6 +119,7 @@ $(document).ready(function() {
                 const formData2 = new FormData();
                 formData2.append("file", file);
 
+                // console.log(formData2);
                 // Make the asynchronous POST request to the server using AJAX
                 $.ajax({
                     url: "/correctiondoc",
