@@ -199,7 +199,7 @@ def correctionProcessDoc():
 
     doc = readDoc(files)
 
-    doc.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    # doc.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     processed_content = BytesIO()
     doc.save(processed_content)
     processed_content.seek(0)
